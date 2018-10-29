@@ -20,7 +20,4 @@ const notesRoutes = require('./Routes/notesRoutes')
 server.use('/users', userRoutes)
 server.use('/notes', notesRoutes)
 
-
-
 server.listen(port, () => console.log(`server running on port 5555`));
-

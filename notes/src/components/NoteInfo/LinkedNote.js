@@ -18,21 +18,29 @@ class LinkedNote extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log(this.props.match.params.id)
-		const noteId = this.props.match.params.id;
-		this.fetchNote(noteId);
-	}
 
-	fetchNote = id => {
+		const token = localStorage.getItem('jwt')
+		const reqOptions = {
+			headers: {
+				Authorization: token,
+			}
+		};
+
+		//console.log(this.props.match.params.id)
+		const id = this.props.match.params.id;
+
 		axios
-			.get(`http://localhost:5555/notes/${id}`)
+			.get(`http://localhost:5555/notes/${id}`, reqOptions)
 			.then(response => {
 				this.setState( () => ({note: response.data}))
 
 			})
 			.catch(error => {
-				console.log(error);
+				console.log(error)
+				localStorage.setItem("error", "Please Log In");
+				this.props.history.push('/signin')
 			})
+
 	}
 
 	toggle = () => {

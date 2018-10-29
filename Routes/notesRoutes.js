@@ -5,6 +5,9 @@ const knex = require('knex')
 const dbConfig = require('../knexfile')
 const db = knex(dbConfig.development)
 
+const jwt = require('jsonwebtoken')
+const secret = require('./keys').jwtKey;
+
 function protected(req, res, next){
 	const token = req.headers.authorization
 	if(token){
