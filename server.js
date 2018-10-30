@@ -1,5 +1,4 @@
 const express = require('express');
-const port = 5555;
 const server = express();
 const helmet = require('helmet')
 const cors = require('cors')
@@ -20,4 +19,9 @@ const notesRoutes = require('./Routes/notesRoutes')
 server.use('/users', userRoutes)
 server.use('/notes', notesRoutes)
 
-server.listen(port, () => console.log(`server running on port 5555`));
+
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(5555, () => console.log('running on port 5555'));
+}
+
+module.exports = server;

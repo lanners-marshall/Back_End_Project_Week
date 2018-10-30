@@ -8,7 +8,7 @@ const db = knex(dbConfig.development)
 const jwt = require('jsonwebtoken')
 const secret = require('./keys').jwtKey;
 
-function protected(req, res, next){
+function protects(req, res, next){
 	const token = req.headers.authorization
 	if(token){
 		jwt.verify(token, secret, (err, decodedToken) => {
@@ -49,7 +49,7 @@ router.post('', (req, res) => {
 
 // -----Read-----
 //get notes
-router.get('', protected, (req, res) => {
+router.get('', protects, (req, res) => {
 	db('notes')
 		.then(response => {
 			res.status(200).json(response)
@@ -61,7 +61,7 @@ router.get('', protected, (req, res) => {
 })
 
 //get notes/:id
-router.get('/:id', protected, (req, res) => {
+router.get('/:id', protects, (req, res) => {
 
 	const { id } = req.params
 
@@ -111,7 +111,13 @@ router.delete('/:id', (req, res) => {
 	.where({id})
 	.del()
 	.then(response => {
-		res.status(200).json(response)
+		if (response === 0){
+			return res.status(404).json({msg: 'no note to delete'})
+		}
+
+		if (response === 1){
+			return res.status(200).json(response)
+		}
 	})
 	.catch(error => {
 		console.log(error)
