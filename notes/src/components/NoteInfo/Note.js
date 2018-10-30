@@ -14,6 +14,7 @@ const Note = (props) => {
 				<NoteTitle>{props.note.title}</NoteTitle>
 				<NoteHR />
 					<WrapP>{props.note.text}</WrapP>
+					<AuthorL>Author {props.note.author}</AuthorL>
 			</Link>
 		</NoteContainer>
 	)

@@ -14,10 +14,30 @@ class CreateNote extends React.Component {
 		};
 	}
 
-	//author: Object.keys(localStorage)
+	componentDidMount(){
+		console.log(Object.keys(localStorage))
+		console.log(Object.values(localStorage))
+		const token = localStorage.getItem('jwt')
+		const reqOptions = {
+			headers: {
+				Authorization: token,
+			}
+		};
+
+		axios
+			.get('http://localhost:5555/notes', reqOptions)
+			.then(response => {
+				console.log(response)
+			})
+			.catch(error => {
+				console.log(error)
+				localStorage.setItem("error", "Please Log In");
+				this.props.history.push('/signin')
+			})
+	}
 
 	createNote = () => {
-		const note = {title: this.state.title, text: this.state.text};
+		const note = {title: this.state.title, text: this.state.text, author: localStorage.getItem('loggedInAs')};
 
 		axios
 			.post("http://localhost:5555/notes", note)

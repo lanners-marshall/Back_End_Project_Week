@@ -26,6 +26,7 @@ class Signin extends React.Component {
  		.then(response => {
  			//console.log(response.data)
  			localStorage.setItem('jwt', response.data.token);
+ 			localStorage.setItem('loggedInAs', this.state.username);
  			this.setState({
  				failedLogin: ''
  			})

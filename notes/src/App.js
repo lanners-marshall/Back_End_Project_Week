@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import { BGColor, City } from './css';
 import SideBar from './components/SideBar/SideBar';
 import axios from 'axios'
@@ -84,8 +84,8 @@ class App extends Component {
           )}
         />
 
+      <Switch>
         <Route
-          exact
           path="/notes/create"
           render={props => (
           <div>
@@ -109,6 +109,8 @@ class App extends Component {
           </div>
           )}
         />
+      </Switch>
+      
         <Route exact path='/signin' component={Signin} />
         <Route exact path='/signup' component={SignUp} />
       </BGColor>

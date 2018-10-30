@@ -18,7 +18,10 @@ class LinkedNote extends React.Component {
 	}
 
 	componentDidMount(){
+		this.fetchNote()
+	}
 
+	fetchNote = () => {
 		const token = localStorage.getItem('jwt')
 		const reqOptions = {
 			headers: {
@@ -26,12 +29,12 @@ class LinkedNote extends React.Component {
 			}
 		};
 
-		//console.log(this.props.match.params.id)
 		const id = this.props.match.params.id;
 
 		axios
 			.get(`http://localhost:5555/notes/${id}`, reqOptions)
 			.then(response => {
+				console.log(response.data)
 				this.setState( () => ({note: response.data}))
 
 			})
@@ -42,6 +45,8 @@ class LinkedNote extends React.Component {
 			})
 
 	}
+
+
 
 	toggle = () => {
 		this.setState({
@@ -76,11 +81,13 @@ class LinkedNote extends React.Component {
 			)
 			.then(response => {
 				console.log("put response: ", response);
+				console.log(response.config.data)
 				this.setState({
 					editTitle: '',
 					editContent: '',
 				})
-				this.fetchNote(this.props.match.params.id);
+				
+				this.fetchNote()
 
 				//I will update state to show the new note list
 				axios
@@ -94,7 +101,8 @@ class LinkedNote extends React.Component {
 
 			})
 			.catch(error => console.log(error))
-			this.toggle()
+
+		this.toggle()
 	}
 
 	deleteNote = () => {
@@ -109,14 +117,14 @@ class LinkedNote extends React.Component {
 				axios
 					.get("http://localhost:5555/notes")
 					.then(response => {
-						this.props.handleData(response.data)
+						this.props.handleData(response.config.data)
 					})
 					.catch(err => {
 						console.log(err)
 					})
 			})
 			.catch(err => console.log(err));
-			this.props.history.push("/notes")
+			this.props.history.push('/notes')
 	}
 
 
@@ -158,7 +166,7 @@ class LinkedNote extends React.Component {
 					<div>
 						<h2>{title}</h2>
 						<p>{text}</p>
-						<Author></Author>
+						<Author>Author {author}</Author>
 					</div>
 					) :
 

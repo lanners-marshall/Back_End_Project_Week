@@ -32,7 +32,7 @@ class NoteList extends React.Component {
 			.catch(error => {
 				console.log(error)
 				localStorage.setItem("error", "Please Log In");
-				//this.props.history.push('/signin')
+				this.props.history.push('/signin')
 			})
 	}
 

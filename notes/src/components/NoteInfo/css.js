@@ -2,7 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import { zoomIn, slideInLeft } from 'react-animations';
 
 const zoomAnimation = keyframes`${zoomIn}`;
-
 // --------------- end of animations
 
 export const BGColor = styled.div`
