@@ -25,7 +25,7 @@ class NoteList extends React.Component {
 		axios
 			.get('http://localhost:5555/notes', reqOptions)
 			.then(response => {
-				console.log(response)
+				// console.log(response)
 				this.setState({
 					notesData: response.data
 				})

@@ -15,8 +15,8 @@ class CreateNote extends React.Component {
 	}
 
 	componentDidMount(){
-		console.log(Object.keys(localStorage))
-		console.log(Object.values(localStorage))
+		// console.log(Object.keys(localStorage))
+		// console.log(Object.values(localStorage))
 		const token = localStorage.getItem('jwt')
 		const reqOptions = {
 			headers: {

@@ -9,8 +9,8 @@ class SideBar extends React.Component {
 		this.state = {};
 	}
 
-	logout = event => {
-		localStorage.clear();
+	logout = () => {
+		localStorage.clear()
     this.props.history.push('/signin')
   }
 
@@ -19,8 +19,8 @@ class SideBar extends React.Component {
 			<Aside>
 				<h1>Lambda<br /> Notes</h1>
 				<Link to="/notes"><DivClick><p>View Your Notes</p></DivClick></Link>
-				<Link to="/create"><DivClick><p>+ Create New Note</p></DivClick></Link>
-				<DivClick><p onClick={this.logout}>Log Out</p></DivClick>
+				<Link to="/notes/create"><DivClick><p>+ Create New Note</p></DivClick></Link>
+				<DivClick onClick={this.logout}><p>Log Out</p></DivClick>
 				<NewsH2>Current News</NewsH2>
 				{this.props.news.map((n, i )=> (
 					<NewsDiv key={i}>
