@@ -8,12 +8,13 @@ class NoteList extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			notesData: []
+			notesData: [],
+      inputText: '',
+      boolVal: false
 		};
 	}
 
 	componentDidMount(){
-
 		const token = localStorage.getItem('jwt')
 		const reqOptions = {
 			headers: {
@@ -36,15 +37,16 @@ class NoteList extends React.Component {
 			})
 	}
 
-	handleInput = event => {
-    this.setState({
-      inputText: event.target.value,
-    });
-  };
+  searchNotes = (e) => {
+    const token = localStorage.getItem('jwt')
+    const reqOptions = {
+      headers: {
+        Authorization: token,
+      }
+    };
 
-
-  searchNotes = e => {
     e.preventDefault();
+
     let newState = {...this.state};
 
     const filter = newState.notesData.filter((note) => note.author === newState.inputText);
@@ -56,7 +58,7 @@ class NoteList extends React.Component {
     }
 
     if (newState.boolVal === false){
-      axios.get("http://localhost:5555/notes").then(response => {this.setState({notesData: response.data, });})
+      axios.get("http://localhost:5555/notes", reqOptions).then(response => {this.setState({notesData: response.data, });})
     }
 
     if (newState.boolVal === true){
@@ -66,6 +68,13 @@ class NoteList extends React.Component {
       })
     }
   }
+
+	handleInput = event => {
+    this.setState({
+      inputText: event.target.value,
+    });
+  };
+
 
   swapNotes = (fromNote, toNote) => {
     let notes = this.state.notesData.slice();
@@ -116,6 +125,9 @@ class NoteList extends React.Component {
 
 		return (
 			<MainContainer>
+        <form onSubmit={this.searchNotes}>
+          <SearchInput onChange={this.handleInput} placeholder="Search by Author" value={this.inputText} />
+        </form>
 				<h2>Your Notes:</h2>
 				<NotesContainer>
 					{this.state.notesData.map(note  => (
@@ -135,9 +147,3 @@ class NoteList extends React.Component {
 }
 
 export default NoteList;
-
-
-
-				// <form onSubmit={this.searchNotes}>
-				// 	<SearchInput onChange={props.handleInput} placeholder="Search by Author" value={props.input} />
-				// </form>

@@ -10,6 +10,10 @@ exports.up = function(knex, Promise) {
   		.string('text')
   		.notNullable()
 
+    tbl
+      .string('author')
+      .notNullable()
+
   })
 };
 

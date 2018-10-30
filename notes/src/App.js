@@ -15,8 +15,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      inputText: '',
-      boolVal: false,
       topNews: [],
     };
   }
@@ -110,7 +108,7 @@ class App extends Component {
           )}
         />
       </Switch>
-      
+
         <Route exact path='/signin' component={Signin} />
         <Route exact path='/signup' component={SignUp} />
       </BGColor>

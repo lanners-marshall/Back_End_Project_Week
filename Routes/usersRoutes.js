@@ -51,8 +51,8 @@ router.post('/register', (req, res) => {
 		db('users')
 			.insert(creds)
 			.then(ids => {
+				console.log(ids)
 				const id = ids[0]
-				
 				db('users') 
 					.where({id})
 					.first()
@@ -74,12 +74,12 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
 	const creds = req.body;
-
 	db('users')
 		.where({username: creds.username})
 		.first()
 		.then(user => {
 			if (user && bcrypt.compareSync(creds.password, user.password)) {
+				console.log(user)
 				const token = generateToken(user);
 				res.status(200).json({token})
 			} else {

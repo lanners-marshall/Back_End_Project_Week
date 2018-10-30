@@ -37,7 +37,7 @@ router.post('', (req, res) => {
 		return res.status(400).json({msg: 'pleasae provide title and text body'})
 	}
 
-	db.insert({title, text}).into('notes')
+	db.insert({title, text, author}).into('notes')
 		.then(response => {
 			res.status(201).json(response)
 		})
@@ -62,7 +62,9 @@ router.get('', protected, (req, res) => {
 
 //get notes/:id
 router.get('/:id', protected, (req, res) => {
+
 	const { id } = req.params
+
 	db('notes')
 		.where({id})
 		.then(response => {
