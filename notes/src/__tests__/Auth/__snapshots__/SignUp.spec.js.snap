@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SignUp /> should match snapshot 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa hZjtPt"
+  >
+    <h1
+      className="sc-bwzfXH grlnmy"
+    >
+      Sign Up Below
+    </h1>
+    <form
+      className="sc-htpNat fvVwSE"
+    >
+      <input
+        name="username"
+        onChange={[Function]}
+        placeholder="username"
+        type="text"
+        value=""
+      />
+      <input
+        name="email"
+        onChange={[Function]}
+        placeholder="email"
+        type="text"
+        value=""
+      />
+      <input
+        name="password"
+        onChange={[Function]}
+        placeholder="password"
+        type="password"
+        value=""
+      />
+      <button
+        className="sc-ifAKCX iUOQTm"
+        onClick={[Function]}
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  <a
+    href="/signin"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-EHOje hqEBXS"
+    >
+      <button
+        className="sc-bxivhb eMpRCh"
+      >
+        Need to go back click here!
+      </button>
+    </div>
+  </a>
+  <div
+    className="sc-bZQynM dZfyrm"
+  >
+    <p />
+    <p />
+  </div>
+</div>
+`;

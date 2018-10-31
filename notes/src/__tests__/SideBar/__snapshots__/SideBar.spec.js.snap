@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SideBar /> should match snapshot 1`] = `
+<div
+  className="sc-bdVaJa eUgSDP"
+>
+  <h1>
+    Lambda
+    <br />
+     Notes
+  </h1>
+  <a
+    href="/notes"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH dZtenF"
+    >
+      <p>
+        View Your Notes
+      </p>
+    </div>
+  </a>
+  <a
+    href="/notes/create"
+    onClick={[Function]}
+  >
+    <div
+      className="sc-bwzfXH dZtenF"
+    >
+      <p>
+        + Create New Note
+      </p>
+    </div>
+  </a>
+  <div
+    className="sc-bwzfXH dZtenF"
+    onClick={[Function]}
+  >
+    <p>
+      Log Out
+    </p>
+  </div>
+  <h2
+    className="sc-bxivhb fYvkCU"
+  >
+    Current News
+  </h2>
+  <div
+    className="sc-ifAKCX dBEyXr"
+  >
+    <a
+      href="https://www.test-example.com"
+    >
+      <p>
+        news-title
+      </p>
+    </a>
+  </div>
+  <div
+    className="sc-ifAKCX dBEyXr"
+  >
+    <a
+      href="https://www.test-example.com"
+    >
+      <p>
+        news-title
+      </p>
+    </a>
+  </div>
+  <a
+    href="http://newsapi.org"
+  >
+    <p
+      className="sc-EHOje ksLjHH"
+    >
+      - newsapi.org
+    </p>
+  </a>
+</div>
+`;

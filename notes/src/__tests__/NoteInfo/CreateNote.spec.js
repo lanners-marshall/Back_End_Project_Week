@@ -2,20 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { MemoryRouter, Route } from 'react-router-dom';
 
-import NoteList from '../components/NoteInfo/NoteList';
+import CreateNote from '../../components/NoteInfo/CreateNote';
 import renderer from 'react-test-renderer';
 
-describe('<NoteList />', () => {
+describe('<CreateNote />', () => {
   it('should match snapshot', () => {
 	  const wrapper = shallow(
-	  	<MemoryRouter initialEntries={['/notes']}>
-	      <NoteList />
-	    </MemoryRouter>
+	      <CreateNote />
   	)
   	const tree = renderer.create(wrapper).toJSON()
   	expect(tree).toMatchSnapshot()
 	})
 });
-

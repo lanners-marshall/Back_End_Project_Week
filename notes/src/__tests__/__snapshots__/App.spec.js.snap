@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<App /> should match snapshot 1`] = `
+<div
+  className="sc-bdVaJa ekoYDo"
+>
+  <div>
+    <div
+      className="sc-htpNat hfVMnL"
+    >
+      <h1>
+        Lambda
+        <br />
+         Notes
+      </h1>
+      <a
+        href="/notes"
+        onClick={[Function]}
+      >
+        <div
+          className="sc-bxivhb cMpcrm"
+        >
+          <p>
+            View Your Notes
+          </p>
+        </div>
+      </a>
+      <a
+        href="/notes/create"
+        onClick={[Function]}
+      >
+        <div
+          className="sc-bxivhb cMpcrm"
+        >
+          <p>
+            + Create New Note
+          </p>
+        </div>
+      </a>
+      <div
+        className="sc-bxivhb cMpcrm"
+        onClick={[Function]}
+      >
+        <p>
+          Log Out
+        </p>
+      </div>
+      <h2
+        className="sc-EHOje bNtLXl"
+      >
+        Current News
+      </h2>
+      <a
+        href="http://newsapi.org"
+      >
+        <p
+          className="sc-gzVnrw hjqJpX"
+        >
+          - newsapi.org
+        </p>
+      </a>
+    </div>
+  </div>
+  <div>
+    <div
+      className="sc-bwzfXH lmzXpv"
+    />
+    <div>
+      <div
+        className="sc-jAaTju jasGxi"
+      >
+        
+      </div>
+      <div
+        className="sc-jWBwVP dYzgoT"
+      />
+      <div
+        className="sc-cMljjf kTeYqF"
+      >
+        <form>
+          <input
+            name="inputCity"
+            onChange={[Function]}
+            placeholder="City"
+          />
+          <input
+            name="country"
+            onChange={[Function]}
+            placeholder="Country Code, us, uk ect"
+            value=""
+          />
+        </form>
+        <button
+          onClick={[Function]}
+        >
+          check your local weather
+        </button>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div
+      className="sc-eHgmQL Vjfqi"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="sc-cvbbAY ksyAOn"
+          onChange={[Function]}
+          placeholder="Search by Author"
+        />
+      </form>
+      <h2>
+        Your Notes:
+      </h2>
+      <div
+        className="sc-hSdWYo eKFpHH"
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -4,8 +4,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter, Route } from 'react-router-dom';
 
-import LinkedNote from '../components/NoteInfo/LinkedNote';
-import renderer from 'react-test-renderer';
+import LinkedNote from '../../components/NoteInfo/LinkedNote';
 
 describe('<LinkedNote />', () => {
   it('should display loading note information if no note on state', () => {
@@ -29,6 +28,7 @@ describe('<LinkedNote />', () => {
 			editContent: '',
 			deleteDiv: 'deleteDivIn',
 		});
+
 		const pars = wrapper.find('p')
 		const sampleTestP = pars.at(2)
 

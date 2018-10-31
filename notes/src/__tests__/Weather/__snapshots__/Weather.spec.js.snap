@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Weather /> should match snapshot 1`] = `
+<div>
+  <div
+    className="sc-bxivhb iOYudn"
+  >
+    
+  </div>
+  <div
+    className="sc-bdVaJa chOuRa"
+  />
+  <div
+    className="sc-htpNat crDpXs"
+  >
+    <form>
+      <input
+        name="inputCity"
+        onChange={[Function]}
+        placeholder="City"
+      />
+      <input
+        name="country"
+        onChange={[Function]}
+        placeholder="Country Code, us, uk ect"
+        value=""
+      />
+    </form>
+    <button
+      onClick={[Function]}
+    >
+      check your local weather
+    </button>
+  </div>
+</div>
+`;

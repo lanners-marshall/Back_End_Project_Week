@@ -4,7 +4,7 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter, Route } from 'react-router-dom';
 
-import Note from '../components/NoteInfo/Note';
+import Note from '../../components/NoteInfo/Note';
 import renderer from 'react-test-renderer';
 
 describe('<Note />', () => {
