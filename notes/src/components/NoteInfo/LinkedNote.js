@@ -30,7 +30,7 @@ class LinkedNote extends React.Component {
 		};
 
 		const id = this.props.match.params.id;
-
+		
 		axios
 			.get(`http://localhost:5555/notes/${id}`, reqOptions)
 			.then(response => {
@@ -45,8 +45,6 @@ class LinkedNote extends React.Component {
 			})
 
 	}
-
-
 
 	toggle = () => {
 		this.setState({

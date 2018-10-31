@@ -66,20 +66,72 @@ router.get('/:id', protects, (req, res) => {
 	const { id } = req.params
 
 	db('notes')
-		.where({id})
+		.join('notes_collaborators', 'notes_collaborators.note_id', '=', 'notes.id')
+		.join('collaborators', 'collaborators.id', '=', 'notes_collaborators.collaborator_id')
+		.where('notes.id', id)
 		.then(response => {
-
-			//if there is not note located at url param
+			//if not note found in many to many search
 			if (response.length === 0){
 				return res.status(404).json({msg: 'note not found'})
 			}
 
-			res.status(200).json(response[0])
+		let collaborators = []
+
+		for (let i = 0; i < response.length; i++){
+			collaborators.push({name: response[i].name})
+		}
+
+			res.status(200).json({
+				id: response[0].note_id,
+				title: response[0].title,
+				text: response[0].text,
+				author: response[0].author,
+				collaborators: collaborators,
+			})
 		})
 		.catch(error => {
 			res.status(500).json({msg: 'there was an error getting note'})
 		})
 })
+
+//get an individual action, 
+// its related project info, and its relavant contexts
+// router.get('/:id', (req, res) => {
+// 	const { id }  = req.params
+// 	db('projects')
+// 	.join('actions', 'projects.id', '=', 'actions.project_id')
+// 	.join('actions_context', 'actions.id', '=', 'actions_context.action_id')
+// 	.join('context', 'context.id', '=', 'actions_context.context_id')
+// 	.select('project_name', 'project_description', 'action_id', 'action_name', 'action_description', 'notes', 'context_name')
+// 	.where('actions.id', id)
+// 	.then(response => {
+// 		console.log(response.length)
+// 		let contextHolder = []
+// 		for (let i = 0; i < response.length; i++){
+// 			contextHolder.push({context_name: response[i].context_name})
+// 		}
+// 		res.status(200).json({
+// 			action_id: response[0].action_id,
+// 			action_name: response[0].action_name,
+// 			action_description: response[0].action_description,
+// 			notes: response[0].notes,
+// 			contexts: contextHolder,
+// 			project_information: [{project_name: response[0].project_name},{project_description: response[0].project_description}],
+// 		})
+// 	})
+// })
+
+
+
+
+
+
+
+
+
+
+
+
 
 // -----Update-----
 //update notes/:id
