@@ -15,9 +15,11 @@ server.use(cors())
 
 const userRoutes = require('./Routes/usersRoutes')
 const notesRoutes = require('./Routes/notesRoutes')
+const collaboratorsRoutes = require('./Routes/collaboratorsRoutes')
 
 server.use('/users', userRoutes)
 server.use('/notes', notesRoutes)
+server.use('/collaborators', collaboratorsRoutes)
 
 
 if (process.env.NODE_ENV !== 'test') {

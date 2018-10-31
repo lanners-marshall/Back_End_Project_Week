@@ -242,4 +242,16 @@ export const SearchInput = styled.input`
   width: 200px;
 `;
 
+export const SelectDiv = styled.div`
+	max-width: 400px;
+	margin-bottom: 20px;
+	> p {
+		font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+	}
+
+
+`
+
 // ------------------------- end of NoteList

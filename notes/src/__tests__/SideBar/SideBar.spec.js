@@ -10,7 +10,7 @@ import renderer from 'react-test-renderer';
 describe('<SideBar />', () => {
   it('should match snapshot', () => {
   	let news =[{title: 'news-title', url: 'https://www.test-example.com'},{title: 'news-title', url: 'https://www.test-example.com'}]
-	  const wrapper = mount(
+	  const wrapper = shallow(
 	  	<MemoryRouter initialEntries={['/notes']}>
 	      <SideBar news={news} />
 	    </MemoryRouter>

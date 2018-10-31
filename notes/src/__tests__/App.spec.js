@@ -9,7 +9,7 @@ import renderer from 'react-test-renderer';
 
 describe('<App />', () => {
   it('should match snapshot', () => {
-	  const wrapper = mount(
+	  const wrapper = shallow(
 	  	<MemoryRouter initialEntries={['/notes']}>
 	    <App />
 	    </MemoryRouter>

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { BGColor, SubmitContainer, InputTitle, InputContent, DivClick, Flexdiv, Red} from './css';
+import { BGColor, SubmitContainer, InputTitle, InputContent, DivClick, Flexdiv, Red, SelectDiv} from './css';
+import Select from 'react-select';
 
 class CreateNote extends React.Component {
 	constructor(props){
@@ -11,6 +12,8 @@ class CreateNote extends React.Component {
 			author: '',
 			errorTitle: '',
 			errorBody: '',
+			collaborators: '',
+			selectedOption: null,
 		};
 	}
 
@@ -34,7 +37,23 @@ class CreateNote extends React.Component {
 				localStorage.setItem("error", "Please Log In");
 				this.props.history.push('/signin')
 			})
+
+		axios
+			.get('http://localhost:5555/collaborators')
+			.then(response => {
+				this.setState({
+					collaborators: response.data
+				})
+			})
+			.catch(error => {
+				console.log(error)
+			})
 	}
+
+  handleSelect = (selectedOption) => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+  }
 
 	createNote = () => {
 		const note = {title: this.state.title, text: this.state.text, author: localStorage.getItem('loggedInAs')};
@@ -64,6 +83,18 @@ class CreateNote extends React.Component {
   }
 
 	render(){
+		//need to 
+		//filter out who is currently logged in from list of users
+
+		let options = []
+		console.log(this.state.collaborators)
+		for (let i = 0; i < this.state.collaborators.length; i++){
+			options.push({value: this.state.collaborators[i].id, label: this.state.collaborators[i].name})
+		}
+
+		console.log(options)
+
+		const { selectedOption } = this.state;
 		return (
 			<BGColor>
 				<SubmitContainer>
@@ -86,6 +117,17 @@ class CreateNote extends React.Component {
 							maxLength="229"
 						/>
 					</form>
+					<SelectDiv>
+						<p>Select Collaborators</p>
+						<Select
+			        value={selectedOption}
+			        onChange={this.handleSelect}
+			        options={options}
+			        isMulti={true}
+			        isSearchable={true}
+			      />
+		      </SelectDiv>
+
 					<Flexdiv>
 						<DivClick onClick={this.createNote}>Save</DivClick>
 					</Flexdiv>
