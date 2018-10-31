@@ -85,11 +85,17 @@ class CreateNote extends React.Component {
 	render(){
 		//need to 
 		//filter out who is currently logged in from list of users
+		let currentUser = localStorage.getItem('loggedInAs')
 
 		let options = []
 		console.log(this.state.collaborators)
+
 		for (let i = 0; i < this.state.collaborators.length; i++){
-			options.push({value: this.state.collaborators[i].id, label: this.state.collaborators[i].name})
+			if (this.state.collaborators[i].name === currentUser){
+				{continue}
+			} else {
+				options.push({value: this.state.collaborators[i].id, label: this.state.collaborators[i].name})
+			}
 		}
 
 		console.log(options)

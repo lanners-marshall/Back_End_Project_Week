@@ -44,6 +44,15 @@ class SignUp extends React.Component {
 	 			})
 	 		})
 
+	 	const collaborator = {name: this.state.username}
+	 	axios.post('http://localhost:5555/collaborators', collaborator)
+	 		.then(response => {
+	 			console.log(response)
+	 		})
+	 		.catch(error => {
+	 			console.log(error)
+	 		})
+
  	}
 
 	render() {
