@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NoteList /> should match snapshot 1`] = `
+<div
+  className="sc-ckVGcZ ctfDmv"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <input
+      className="sc-jKJlTe idVQSh"
+      onChange={[Function]}
+      placeholder="Search by Author"
+    />
+  </form>
+  <h2>
+    Your Notes:
+  </h2>
+  <div
+    className="sc-dxgOiQ ezUNuZ"
+  />
+</div>
+`;

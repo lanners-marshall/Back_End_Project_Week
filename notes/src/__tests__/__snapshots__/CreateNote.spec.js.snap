@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateNote /> should match snapshot 1`] = `
+<div
+  className="sc-bdVaJa mMasL"
+>
+  <div
+    className="sc-bwzfXH jJIZoS"
+  >
+    <h3>
+      Create New Note:
+    </h3>
+    <form>
+      <input
+        className="sc-htpNat jncqSh"
+        maxLength="30"
+        name="title"
+        onChange={[Function]}
+        placeholder="Note Title"
+        type="text"
+        value=""
+      />
+      <textarea
+        className="sc-bxivhb euUZsj"
+        maxLength="229"
+        name="text"
+        onChange={[Function]}
+        placeholder="Note Content"
+        type="text"
+        value=""
+      />
+    </form>
+    <div
+      className="sc-EHOje dISPpS"
+    >
+      <button
+        className="sc-ifAKCX dCxPJL"
+        onClick={[Function]}
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>
+`;
