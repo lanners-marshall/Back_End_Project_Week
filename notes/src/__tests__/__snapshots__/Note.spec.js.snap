@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Note /> should match snapshot 1`] = `
+<div
+  className="sc-kgoBCf cJAvcV"
+  draggable={true}
+  onDragOver={[Function]}
+  onDragStart={[Function]}
+  onDrop={[Function]}
+>
+  <a
+    href="/notes/1"
+    onClick={[Function]}
+  >
+    <h3
+      className="sc-kAzzGY ivuxrH"
+    >
+      updated note 1
+    </h3>
+    <hr
+      className="sc-chPdSV dyjvCp"
+    />
+    <p
+      className="sc-kGXeez kEmdLH"
+    >
+      Sample Text One
+    </p>
+    <p
+      className="sc-kpOJdX jDyCNb"
+    >
+      Author 
+      Cool-Dude
+    </p>
+  </a>
+</div>
+`;
