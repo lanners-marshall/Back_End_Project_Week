@@ -149,6 +149,11 @@ exports[`<CreateNote /> should match snapshot 1`] = `
         Save
       </button>
     </div>
+    <p
+      className="sc-bZQynM dNXDBR"
+    >
+      
+    </p>
   </div>
 </div>
 `;
