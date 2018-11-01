@@ -59,8 +59,9 @@ exports[`<SignUp /> should match snapshot 1`] = `
   <div
     className="sc-bZQynM dZfyrm"
   >
-    <p />
-    <p />
+    <p>
+      
+    </p>
   </div>
 </div>
 `;

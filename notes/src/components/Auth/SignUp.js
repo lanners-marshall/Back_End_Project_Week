@@ -27,32 +27,38 @@ class SignUp extends React.Component {
  			email: this.state.email
  		}
 
-	 	axios.post('http://localhost:5555/users/register', newUser)
-	 		.then(response => {
-	 			console.log(response)
-	 			localStorage.setItem('jwt', response.data.token);
-	 			localStorage.setItem('loggedInAs', this.state.username);
-	 			this.setState({
-	 				error: ''
-	 			})
-	 			this.props.history.push('/notes')
-	 		})
-	 		.catch(error => {
-	 			console.log(error)
-	 			this.setState({
-	 				error: error.response.data,
-	 			})
-	 		})
+ 		if (newUser.username.length < 5 || newUser.password.length < 5 || newUser.email.length < 5){
+ 			this.setState({
+ 				error: 'Please provide all information. Min length for each is 5 characters'
+ 			})
+ 		} else {
 
-	 	const collaborator = {name: this.state.username}
-	 	axios.post('http://localhost:5555/collaborators', collaborator)
-	 		.then(response => {
-	 			console.log(response)
-	 		})
-	 		.catch(error => {
-	 			console.log(error)
-	 		})
+		 	axios.post('http://localhost:5555/users/register', newUser)
+		 		.then(response => {
+		 			console.log(response)
+		 			localStorage.setItem('jwt', response.data.token);
+		 			localStorage.setItem('loggedInAs', this.state.username);
+		 			this.setState({
+		 				error: ''
+		 			})
+		 			this.props.history.push('/notes')
+		 		})
+		 		.catch(error => {
+		 			console.log(error)
+		 			this.setState({
+		 				error: error.response.data,
+		 			})
+		 		})
 
+		 	const collaborator = {name: this.state.username}
+		 	axios.post('http://localhost:5555/collaborators', collaborator)
+		 		.then(response => {
+		 			console.log(response)
+		 		})
+		 		.catch(error => {
+		 			console.log(error)
+		 		})
+ 		}
  	}
 
 	render() {
@@ -87,8 +93,7 @@ class SignUp extends React.Component {
 				</Contain>
 				<Link to='/signin'><BTNDiv><BTN>Need to go back click here!</BTN></BTNDiv></Link>
 				<Errors>
-					<p>{this.state.error.error1}</p>
-					<p>{this.state.error.error2}</p>
+					<p>{this.state.error}</p>
 				</Errors>
 			</div>
 		)

@@ -23,53 +23,31 @@ function generateToken(user){
 router.post('/register', (req, res) => {
 	const creds = req.body
 	
-	let e1 = '';
-	let e2 = '';
-	let bol = false;
+	const hash = bcrypt.hashSync(creds.password, 12);
+	creds.password = hash;
 
-	if (creds.password.length < 5){
-		e1 = 'password must be 5 characters in length';
-		bol = true;
-	}
-
-	if (creds.username.length < 5){
-		e2 = 'username must be 5 characters in length';
-		bol = true;
-	}
-
-	//if form not filled out correctly end and send error msg
-	if (bol === true){
-		res.status(400).json({error1: e1, error2: e2})
-	}
-
-	//if form is filled out correctly add user and give token
-	if (bol === false){
-
-		const hash = bcrypt.hashSync(creds.password, 12);
-		creds.password = hash;
-
-		db('users')
-			.insert(creds)
-			.then(ids => {
-				//console.log(ids)
-				const id = ids[0]
-				db('users') 
-					.where({id})
-					.first()
-					.then(user => {
-						const token = generateToken(user);
-						res.status(200).json({token})
-					})
-					.catch(err => {
-						console.log(err)
-						res.status(500).json({msg: 'error generating token'})
-					})
-			})
-			.catch(err => {
-				console.log(err);
-				res.status(500).json({msg: "there was an error registering user"})
-			})
-	}
+	db('users')
+		.insert(creds)
+		.then(ids => {
+			//console.log(ids)
+			const id = ids[0]
+			db('users') 
+				.where({id})
+				.first()
+				.then(user => {
+					const token = generateToken(user);
+					res.status(200).json({token})
+				})
+				.catch(err => {
+					console.log(err)
+					res.status(500).json({msg: 'error generating token'})
+				})
+		})
+		.catch(err => {
+			console.log(err);
+			res.status(500).json({msg: "there was an error registering user"})
+		})
+	
 })
 
 router.post('/login', (req, res) => {
