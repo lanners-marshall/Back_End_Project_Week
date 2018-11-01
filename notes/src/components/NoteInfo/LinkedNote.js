@@ -209,14 +209,14 @@ class LinkedNote extends React.Component {
 						<form>
 							<InputTitleL
 								type="text"
-								placeholder='Note Title'
+								placeholder={this.state.note.title}
 								onChange={this.handleChange}
 								name="editTitle"
 								value={this.state.editTitle}
 							/>
 							<InputContentL
 								type="text"
-								placeholder='Note Content'
+								placeholder={this.state.note.text}
 								onChange={this.handleChange}
 								name="editContent"
 								value={this.state.editContent}
