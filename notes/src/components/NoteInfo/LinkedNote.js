@@ -10,7 +10,6 @@ class LinkedNote extends React.Component {
 			note: null,
 			toggleEdit: true,
 			toggleDelete: true,
-			toggleLinks: true,
 			editTitle: '',
 			editContent: '',
 			deleteDiv: 'deleteDivIn',
@@ -132,7 +131,14 @@ class LinkedNote extends React.Component {
 
 	render() {
 
-		console.log(this.state.note)
+		let bool = false
+		if (this.state.note){
+			for (let i = 0; i < this.state.note.collaborators.length; i++){
+				if (this.state.note.collaborators[i].name === localStorage.getItem('loggedInAs')){
+					bool = true
+				}
+			}
+		}
 
 		let collabs = []
 
@@ -182,7 +188,7 @@ class LinkedNote extends React.Component {
 					</Overlay>
 				}
 
-					{this.state.toggleLinks ? (
+					{bool ? (
 						<NoteLinks>
 							<p onClick={this.toggle}><u>edit</u></p>
 							<p onClick={this.deleteIn}><u>delete</u></p>
