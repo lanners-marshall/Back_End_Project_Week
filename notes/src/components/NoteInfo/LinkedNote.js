@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import './switchAnimate.css';
-import { LinkedContainer, NoteLinks, SubmitContainerL, InputTitleL, InputContentL, DivClickL, Overlay, DeleteBTN, NoBTN, ButtonFlex, Author } from './css'
+import { LinkedContainer, NoteLinks, SubmitContainerL, InputTitleL, InputContentL, DivClickL, Overlay, DeleteBTN, NoBTN, ButtonFlex, Author, CollabDiv, NoteLDiv } from './css'
 
 class LinkedNote extends React.Component {
 	constructor(props){
@@ -34,12 +34,12 @@ class LinkedNote extends React.Component {
 		axios
 			.get(`http://localhost:5555/notes/${id}`, reqOptions)
 			.then(response => {
-				console.log(response.data)
+				//console.log(response.data)
 				this.setState( () => ({note: response.data}))
 
 			})
 			.catch(error => {
-				console.log(error)
+				//console.log(error)
 				localStorage.setItem("error", "Please Log In");
 				this.props.history.push('/signin')
 			})
@@ -132,8 +132,37 @@ class LinkedNote extends React.Component {
 
 	render() {
 
+		console.log(this.state.note)
+
+		let collabs = []
+
+		if (this.state.note){
+			for (let i = 0; i < this.state.note.collaborators.length; i++) {
+				if (this.state.note.collaborators[i].name !== this.state.note.author){
+					collabs.push(this.state.note.collaborators[i])
+				}
+			}
+		} else {
+			collabs = null
+		}
+
 		if (!this.state.note) {
 		 return <div>Loading note information...</div>;
+		}
+
+		let returnDiv;
+		if (collabs.length > 0){
+			returnDiv = 
+			<CollabDiv>
+				<div>
+					<h2>Collaberator List</h2>
+					{collabs.map((col, i) => (
+					<p key={i}>{col.name}</p>
+					))}
+				</div>
+			</CollabDiv>
+		} else {
+			returnDiv = null
 		}
 
 		const { title, text, author } = this.state.note;
@@ -162,10 +191,14 @@ class LinkedNote extends React.Component {
 
 					{this.state.toggleEdit ? (
 					<div>
-						<h2>{title}</h2>
-						<p>{text}</p>
-						<Author>Author {author}</Author>
+						<NoteLDiv>
+							<h2>{title}</h2>
+							<p>{text}</p>
+						</NoteLDiv>
+						<Author>- By {author}</Author>
+						{returnDiv}
 					</div>
+
 					) :
 
 					<SubmitContainerL>

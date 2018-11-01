@@ -176,9 +176,10 @@ export const ButtonFlex = styled.div`
   justify-content: space-evenly;
 `;
 
-export const Author = styled.p`
+export const Author = styled.div`
 	margin-top: 15px;
 	text-transform:capitalize;
+	font-size: 2rem;
 `;
 
 // ------------------------- end of LinkedNote
@@ -250,8 +251,38 @@ export const SelectDiv = styled.div`
     font-weight: bold;
     margin-bottom: 15px;
 	}
+`
 
+export const CollabDiv = styled.div`
+	border: dashed grey 1px;
+	border-width: 3px;
+	padding: 1.5%;
+	background-color: white;
+	max-width: 200px;
+	margin-top: 15px;
+	font-size: 1.6rem;
+	> div {
+		> h2 {
+			margin-bottom: 10px;
+		}
+		> p {
+			margin-bottom: 5px;
+			text-transform:capitalize;
+		}
+	}
+`
 
+export const NoteLDiv = styled.div`
+	max-width: 80%;
+	> h2 {
+		font-size: 2rem;
+		font-weight: bold;
+		text-align: center;
+	}
+	> p {
+		font-size: 1.6rem;
+		margin-top: 20px;
+	}
 `
 
 // ------------------------- end of NoteList
