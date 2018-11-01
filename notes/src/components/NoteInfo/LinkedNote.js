@@ -33,12 +33,10 @@ class LinkedNote extends React.Component {
 		axios
 			.get(`http://localhost:5555/notes/${id}`, reqOptions)
 			.then(response => {
-				//console.log(response.data)
 				this.setState( () => ({note: response.data}))
 
 			})
 			.catch(error => {
-				//console.log(error)
 				localStorage.setItem("error", "Please Log In");
 				this.props.history.push('/signin')
 			})
@@ -130,7 +128,6 @@ class LinkedNote extends React.Component {
   }
 
 	render() {
-
 		let bool = false
 		if (this.state.note){
 			for (let i = 0; i < this.state.note.collaborators.length; i++){

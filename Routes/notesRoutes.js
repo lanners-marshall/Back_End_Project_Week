@@ -53,8 +53,7 @@ router.post('', (req, res) => {
 				.insert(notes_collaborators)
 		})
 		.catch(error => {
-			console.log(error)
-			res.status(500).json({msg: 'there was an error creating note'})
+			res.status(500).json(error)
 		})
 })
 

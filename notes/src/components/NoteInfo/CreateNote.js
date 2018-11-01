@@ -20,8 +20,6 @@ class CreateNote extends React.Component {
 	}
 
 	componentDidMount(){
-		// console.log(Object.keys(localStorage))
-		// console.log(Object.values(localStorage))
 		const token = localStorage.getItem('jwt')
 		const reqOptions = {
 			headers: {
@@ -61,7 +59,6 @@ class CreateNote extends React.Component {
 
 		let obj = {};
 		let collabs = this.state.selectedOption
-		//console.log(this.state.collaborators)
 		
 		for (let i = 0; i < this.state.collaborators.length; i++){
 			if (this.state.collaborators[i].name === localStorage.getItem('loggedInAs')){
@@ -70,7 +67,6 @@ class CreateNote extends React.Component {
 		}
 
 		collabs.push(obj);
-
 
 		const note = {
 			title: this.state.title, 

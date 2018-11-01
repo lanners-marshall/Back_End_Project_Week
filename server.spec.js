@@ -39,8 +39,14 @@ describe('Authentication', function(){
 					.end(function(err,res){
 						//making sure token is there
 						expect(typeof token).toBe('string')
-						if (err) return done(err);
-        		done();
+						//adding new user to possible collaberator list
+						request(server)
+							.post('/collaborators')
+							.send({name: 'jimmy'})
+							.end(function(err,res){
+								if (err) return done(err);
+								done();
+							})
 					})
 			})
 	})
@@ -66,7 +72,7 @@ describe('/notes CRUD', function(){
 	it('should create a note!', function(done){
 		request(server)
 			.post('/notes')
-			.send({title: 'new note', text: 'Sample Text', author: 'jimmy'})
+			.send({title: 'new note', text: 'Sample Text', author: 'jimmy', collaborators: [{value: 1, label: 'ryan'}, {value: 6, label: 'jimmy'}]})
 			.set('Accept', 'application/json')
 			.expect(201, done)
 	})
