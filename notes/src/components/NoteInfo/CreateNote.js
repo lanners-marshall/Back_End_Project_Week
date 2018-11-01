@@ -3,6 +3,8 @@ import axios from 'axios';
 import { BGColor, SubmitContainer, InputTitle, InputContent, DivClick, Flexdiv, Red, SelectDiv} from './css';
 import Select from 'react-select';
 
+console.log()
+
 class CreateNote extends React.Component {
 	constructor(props){
 		super(props);
@@ -13,7 +15,7 @@ class CreateNote extends React.Component {
 			errorTitle: '',
 			errorBody: '',
 			collaborators: '',
-			selectedOption: null,
+			selectedOption: [],
 		};
 	}
 
@@ -30,10 +32,10 @@ class CreateNote extends React.Component {
 		axios
 			.get('http://localhost:5555/notes', reqOptions)
 			.then(response => {
-				console.log(response)
+				//console.log(response)
 			})
 			.catch(error => {
-				console.log(error)
+				//console.log(error)
 				localStorage.setItem("error", "Please Log In");
 				this.props.history.push('/signin')
 			})
@@ -46,17 +48,36 @@ class CreateNote extends React.Component {
 				})
 			})
 			.catch(error => {
-				console.log(error)
+				//console.log(error)
 			})
 	}
 
   handleSelect = (selectedOption) => {
     this.setState({ selectedOption });
-    console.log(`Option selected:`, selectedOption);
+    //console.log(`Option selected:`, selectedOption);
   }
 
 	createNote = () => {
-		const note = {title: this.state.title, text: this.state.text, author: localStorage.getItem('loggedInAs')};
+
+		let obj = {};
+		let collabs = this.state.selectedOption
+		//console.log(this.state.collaborators)
+		
+		for (let i = 0; i < this.state.collaborators.length; i++){
+			if (this.state.collaborators[i].name === localStorage.getItem('loggedInAs')){
+				obj = {value: this.state.collaborators[i].id, label: localStorage.getItem('loggedInAs') }
+			}
+		}
+
+		collabs.push(obj);
+
+
+		const note = {
+			title: this.state.title, 
+			text: this.state.text, 
+			author: localStorage.getItem('loggedInAs'),
+			collaborators: collabs,
+		};
 
 		axios
 			.post("http://localhost:5555/notes", note)
@@ -76,21 +97,41 @@ class CreateNote extends React.Component {
 			})
 			.catch(error => console.log(error));
 			this.props.history.push("/notes")
+
+// [
+// 	{
+// 		label: “sam”
+// 		value: 2
+// 	}
+// 	{
+// 		label: “carl”
+// 		value: 2
+// 	}
+// 	{
+// 		label: “Timmy”
+// 		value: 5
+// 	}
+// ]
+
+		//{note_id: 1, collaborator_id: 2}, // jessica
+
+		//need a post to notes_collaborators table
+		// axios
+		// 	.post
 	}
 
   handleChange = event => {
     this.setState({[event.target.name]: event.target.value})
   }
 
-	render(){
-		//need to 
-		//filter out who is currently logged in from list of users
+	render(){		
+
+		//console.log(this.props)
 		let currentUser = localStorage.getItem('loggedInAs')
-
 		let options = []
-		console.log(this.state.collaborators)
-
+		//console.log(this.state.collaborators)
 		for (let i = 0; i < this.state.collaborators.length; i++){
+			//filter out who is currently logged in from list of users
 			if (this.state.collaborators[i].name === currentUser){
 				{continue}
 			} else {
@@ -98,7 +139,7 @@ class CreateNote extends React.Component {
 			}
 		}
 
-		console.log(options)
+		// console.log(options)
 
 		const { selectedOption } = this.state;
 		return (

@@ -30,7 +30,7 @@ function protects(req, res, next){
 // -----Create-----
 //post to notes
 router.post('', (req, res) => {
-	const {title, text, author} = req.body
+	const {title, text, author, collaborators} = req.body
 
 	//make sure form is filled out fully
 	if (!req.body.title || !req.body.text){
@@ -39,7 +39,18 @@ router.post('', (req, res) => {
 
 	db.insert({title, text, author}).into('notes')
 		.then(response => {
-			res.status(201).json(response)
+
+			let notes_collaborators = []
+			let NC = req.body.collaborators 
+
+			res.status(201).json(response);
+
+			for (let i = 0; i < NC.length; i++){
+				notes_collaborators.push({note_id: response[0], collaborator_id: NC[i].value})
+			}
+
+			return db('notes_collaborators')
+				.insert(notes_collaborators)
 		})
 		.catch(error => {
 			console.log(error)

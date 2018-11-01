@@ -18,6 +18,7 @@ class SideBar extends React.Component {
 		return (	
 			<Aside>
 				<h1>Lambda<br /> Notes</h1>
+				<p>Welcome - {localStorage.getItem('loggedInAs')}</p>
 				<Link to="/notes"><DivClick><p>View Your Notes</p></DivClick></Link>
 				<Link to="/notes/create"><DivClick><p>+ Create New Note</p></DivClick></Link>
 				<DivClick onClick={this.logout}><p>Log Out</p></DivClick>
