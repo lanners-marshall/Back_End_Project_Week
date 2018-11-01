@@ -12,10 +12,9 @@ class CreateNote extends React.Component {
 			title: '',
 			text: '',
 			author: '',
-			errorTitle: '',
-			errorBody: '',
 			collaborators: '',
 			selectedOption: [],
+			error: '',
 		};
 	}
 
@@ -75,7 +74,13 @@ class CreateNote extends React.Component {
 			collaborators: collabs,
 		};
 
-		axios
+		if (!note.title.length || !note.text){
+			this.setState({
+				error: "Please provide title and text body",
+				selectedOption: [],
+			})
+		} else {
+			axios
 			.post("http://localhost:5555/notes", note)
 			.then(response => {
 				console.log("post response: ", response);
@@ -93,27 +98,8 @@ class CreateNote extends React.Component {
 			})
 			.catch(error => console.log(error));
 			this.props.history.push("/notes")
+		}
 
-// [
-// 	{
-// 		label: “sam”
-// 		value: 2
-// 	}
-// 	{
-// 		label: “carl”
-// 		value: 2
-// 	}
-// 	{
-// 		label: “Timmy”
-// 		value: 5
-// 	}
-// ]
-
-		//{note_id: 1, collaborator_id: 2}, // jessica
-
-		//need a post to notes_collaborators table
-		// axios
-		// 	.post
 	}
 
   handleChange = event => {
@@ -174,6 +160,9 @@ class CreateNote extends React.Component {
 					<Flexdiv>
 						<DivClick onClick={this.createNote}>Save</DivClick>
 					</Flexdiv>
+					<Red>
+						{this.state.error}
+					</Red>
 				</SubmitContainer>
 			</BGColor>
 		)

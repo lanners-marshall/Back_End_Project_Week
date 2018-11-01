@@ -64,6 +64,8 @@ export const Flexdiv = styled.div`
 
 export const Red = styled.p`
 	color: red;
+	margin-top: 15px;
+	font-size: 1.6rem
 `;
 
 // ------------------------- end of CreateNote
