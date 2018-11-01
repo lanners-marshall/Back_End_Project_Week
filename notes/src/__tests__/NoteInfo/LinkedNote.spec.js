@@ -15,7 +15,7 @@ describe('<LinkedNote />', () => {
 	})
 
 	it('should display note in view is on state', () => {
-		let note = {id: 1, title: "updated note 1", text: "Sample Text One", author: "Cool-Dude"};
+		let note = {id: 1, title: "updated note 1", text: "Sample Text One", author: "Cool-Dude", collaborators: [{id: 1, name: 'test name'}]};
 		const wrapper = shallow(
 			<LinkedNote match={ {params: {id: 1}} } />
 		)
@@ -29,11 +29,12 @@ describe('<LinkedNote />', () => {
 			deleteDiv: 'deleteDivIn',
 		});
 
-		const pars = wrapper.find('p')
-		const sampleTestP = pars.at(2)
+		const h2 = wrapper.find('h2')
+		const testh2 = h2.at(0)
 
 		//if state was updated correctly the note should render in the view
 		//I'm checking based on a sample paramgraph
-		expect(sampleTestP.text()).toBe('Sample Text One')
+		expect(testh2.text()).toBe('updated note 1')
+		// console.log(wrapper.debug())
 	})
 });

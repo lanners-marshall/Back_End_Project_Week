@@ -13,6 +13,9 @@ exports[`<App /> should match snapshot 1`] = `
         <br />
          Notes
       </h1>
+      <p>
+        Welcome - 
+      </p>
       <a
         href="/notes"
         onClick={[Function]}
@@ -67,15 +70,15 @@ exports[`<App /> should match snapshot 1`] = `
     />
     <div>
       <div
-        className="sc-jAaTju jasGxi"
+        className="sc-iRbamj fIcTMI"
       >
         
       </div>
       <div
-        className="sc-jWBwVP dYzgoT"
+        className="sc-jAaTju dsLIpM"
       />
       <div
-        className="sc-cMljjf kTeYqF"
+        className="sc-gPEVay hBNLvI"
       >
         <form>
           <input

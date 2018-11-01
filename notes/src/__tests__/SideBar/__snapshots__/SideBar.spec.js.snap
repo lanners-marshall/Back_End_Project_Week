@@ -9,6 +9,9 @@ exports[`<SideBar /> should match snapshot 1`] = `
     <br />
      Notes
   </h1>
+  <p>
+    Welcome - 
+  </p>
   <a
     href="/notes"
     onClick={[Function]}
