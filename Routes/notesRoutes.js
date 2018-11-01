@@ -140,7 +140,10 @@ router.delete('/:id', (req, res) => {
 		}
 
 		if (response === 1){
-			return res.status(200).json(response)
+			res.status(200).json(response)
+			return db('notes_collaborators')
+			.where('note_id', id)
+			.del()
 		}
 	})
 	.catch(error => {
